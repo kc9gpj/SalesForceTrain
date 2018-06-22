@@ -16,6 +16,66 @@
     <title>Train Scheduler</title>
   </head>
   <body>
+    <div class="jumbotron text-center" style="background-color: #001a4d; color: white; font-size: 30px;">
+    <p>Train Scheduler</p>
+    <p>All Aboard!</p>
+    </div>
+
+    <div class="card card-primary">
+            <div class="card-heading">
+                    <div class="card-header bg-success border-success">Current Train Schedule</div>
+            </div>
+            <div class="card-body">
+              <table class="table table-hover" id='employee-table'>
+                <thead>
+                  <tr>
+                    <th>Train Name</th>
+                    <th>Destination</th>
+                    <th>Frequency (min)</th>
+                    <th>Next Arrival</th>
+                    <th>Minutes Away</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+    <!-- Add train  -->
+    <div class="card card-primary">
+            <div class="card-heading">
+                    <div class="card-header bg-success border-success">Add Train</div>
+                </div>
+            <div class="card-body">
+              
+              <!-- Entry Form -->
+              <form>
+                <div class="form-group row">
+                  <label for="name-input">Train Name</label>
+                  <input class="form-control" id="name-input" type="text">
+                </div>
+                <div class="form-group row">
+                  <label for="destination-input">Destination</label>
+                  <input class="form-control" id="destination-input" type="text">
+                </div>
+                <div class="form-group row">
+                  <label for="time-input">Firt Train (HH:mm Military Time)</label>
+                  <input class="form-control" id="time-input" type="text">
+                </div>
+                <div class="form-group row">
+                  <label for="freq-input">Frequency (min)</label>
+                  <input class="form-control" id="freq-input" type="text">
+                </div>
+                <button class="btn btn-success" id="add-train-btn" type="submit">Submit</button>
+              </form>
+              
+            </div>
+            
+          </div>
+          
+        </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
