@@ -16,7 +16,7 @@ var config = {
 
   var nName = $("#name-input").val().trim();
   var nDestination = $("#destination-input").val().trim();
-  var nTime = moment($("#time-input").val().trim(), "DD/MM/YY").format("X");
+  var nTime = $("#time-input").val().trim();
   var nFreq = $("#freq-input").val().trim();
 
   var newTrain = {
@@ -53,6 +53,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
     var newDestination = childSnapshot.val().destination;
     var newTime = childSnapshot.val().time;
     var newFreq = childSnapshot.val().freq;
+    
   
     // Employee Info
     console.log(newName); 
@@ -62,12 +63,8 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
 
     // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(newTime, "HH:mm").subtract(1, "years");
+    var firstTimeConverted = moment(newTime, "hh:mm").subtract(1, "years");
     console.log(firstTimeConverted);
-
-    // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
@@ -78,15 +75,17 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
     console.log(tRemainder);
 
     // Minute Until Train
-    var tMinutesTillTrain =  newFreq - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+    var minutes =  newFreq - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + minutes);
+    var tMinutesTillTrain = (moment(minutes).format("hh"));
 
     // Next Train
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+    var Train = moment().add(minutes, "minutes");
+    console.log("ARRIVAL TIME: " + moment(Train).format("hh:mm"));
+    var nextTrain = (moment(Train).format("hh:mm"));
     
   
     // Add each train's data into the table
     $("#train-table > tbody").append("<tr><td>" + newName + "</td><td>" + newDestination + "</td><td>" +
-    newFreq + "</td><td>" + nextTrain + "</td><td>" + tMinutesTillTrain + "</td></tr>");
+    newFreq + "</td><td>" + nextTrain + "</td><td>" + minutes+ "</td></tr>");
   });
